@@ -35,9 +35,11 @@ class Post (models.Model):
     def dislike(self):
         self.rating = self.rating - 1
         self.save()
-
     def preview(self):
         return f'{self.text[:124]} ...'
+
+    def __str__(self):
+        return f'{self.title} - \n{self.text[:500]} ...'
 
 class PostCategory (models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
