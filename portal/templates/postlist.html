@@ -1,22 +1,23 @@
 {% extends 'flatpages/default.html' %}
+<!--{% load custom_filters %}-->
+
 {% block title %}Список новостей{% endblock %}
-{% block content %} {{ postlist }} {% endblock %}
+
+{% block content %}
+<h1>Список новостей</h1>
+<h3>Количество: {{ postlist | length }}</h3>
+{% if postlist %}
+    {% for post in postlist %}
+        <div>
+            <h6>Дата публикации: {{ post.time_in | date:'d M Y' }}</h6>
+            <h5>{{ post.title | censor }}</h5>
+            <str>{{ post.text | truncatewords:20 | censor }}</str>
+        </div>
+        <hr>
+    {% endfor %}
+{% endif %}
+{% endblock %}
 
 
-
-
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    {% load static %}-->
-<!--    <link rel="stylesheet" href="{% static 'css/styles.css' %}">-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Post List</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--<h1>Все новости и статьи</h1>-->
-<!--{{ postlist }}-->
-<!--</body>-->
-<!--</html>-->
 
 

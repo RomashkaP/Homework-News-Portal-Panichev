@@ -1,8 +1,13 @@
 {% extends 'flatpages/default.html' %}
+<!--{% load custom_filters %}-->
 {% block title %}Отдельная статья{% endblock %}
 {% block content %}
-<h1>Отдельно</h1>
-{{ postdetail }}
+<div>
+    <h6>Дата публикации: {{ postdetail.time_in | date:'d M Y' }}</h6>
+    <h5>{{ postdetail.title | censor }}</h5>
+    <str>{{ postdetail.text | censor}}</str>
+</div>
+<hr>
 {% endblock %}
 
 
