@@ -1,8 +1,8 @@
 from django import template
-#from portal.resources import CENSOR_LIST
+from portal.resources import CENSOR_LIST
 register = template.Library()
 
-CENSOR_LIST = ['достиг', 'связывают', 'Солнце', 'аллеи', 'домов', 'first', 'парка', 'жилья', 'сообщили', 'планеты']
+
 @register.filter()
 def censor(value):
     if not isinstance(value, str):
