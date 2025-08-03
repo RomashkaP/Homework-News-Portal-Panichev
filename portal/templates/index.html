@@ -1,0 +1,15 @@
+{% extends 'flatpages/default.html' %}
+{% load custom_filters %}
+{% load custom_tags %}
+{% block content %}
+<h2>Страница авторизованного пользователя {{request.user.username}}</h2>
+<div> Здесь может содержаться персональная информация для каждого пользователя </div>
+
+{% if is_not_author %}
+<button> <a href="/be_author"> Хочу быть автором!</a> </button>
+{% endif %}
+
+<button>
+    <a href="/logout">Выйти</a>
+</button>
+{% endblock content %}
