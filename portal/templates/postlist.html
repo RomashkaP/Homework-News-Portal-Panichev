@@ -1,17 +1,36 @@
 {% extends 'flatpages/default.html' %}
-<!--{% load custom_filters %}-->
+{% load custom_filters %}
 
 {% block title %}Список новостей{% endblock %}
 
 {% block content %}
-<h1>Список новостей</h1>
-<h3>Количество: {{ postlist | length }}</h3>
+<h1>Все посты:</h1>
+<!--<h2> Это юзер - {{ request.user }}</h2>-->
+<hr>
+<h3>Категории: </h3>
+<ul>
+    {% for category in categories %}
+    <li><a href="{{ category.name | lower }}">{{ category.name }}</a> ->
+        {% if request.user not in category.subscribers.all %}
+            <a href="subscribe_category/{{ category.name }}">Подписаться на категорию</a></li>
+        {% endif %}
+    {% endfor %}
+</ul>
+<hr>
+<!--<h3>Количество: {{ postlist | length }}</h3>-->
 {% if postlist %}
     {% for post in postlist %}
         <div>
             <h6>Дата публикации: {{ post.time_in | date:'d M Y' }}</h6>
-            <h5>{{ post.title | censor }}</h5>
-            <str>{{ post.text | truncatewords:20 | censor }}</str>
+            <h5><a href="{{ post.id }}">{{ post.title | censor }}</a> ></h5>
+            <h5>Категория:
+                {% for category in post.categoryes.all %}
+                    {{ category.name }}
+                {% empty %}
+                    <p>Нет постов в этой категории.</p>
+                {% endfor %}
+            </h5>
+            <span>{{ post.text | truncatewords:20 | censor }}</span>
         </div>
         <hr>
     {% endfor %}

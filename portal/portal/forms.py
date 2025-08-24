@@ -34,4 +34,20 @@ class PostForm(forms.ModelForm):
             raise ValidationError({
                 "text": "Текст не может быть менее 100 символов."
             })
+
+        # user = self.instance.user
+        # if not user:
+        #     return cleaned_data
+        # twenty_four_hours_ago = timezone.now() - timedelta(hours=24)
+        # post_count = Post.objects.filter(
+        #     author__user=user,
+        #     time_in__gte=twenty_four_hours_ago
+        # ).count()
+        #
+        # if post_count >= 3:
+        #     raise forms.ValidationError(
+        #         "Вы не можете публиковать более 3 записей в сутки. "
+        #         f"Вы уже опубликовали {post_count} постов за последние 24 часа."
+        #     )
+
         return cleaned_data

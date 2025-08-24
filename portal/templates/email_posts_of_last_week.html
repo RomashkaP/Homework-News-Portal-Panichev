@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load custom_filters %}
+    <title>Email message</title>
+</head>
+<body>
+<h1>Привет {{ user.username }}, вот список новых постов в категории {{ category.name }}.</h1>
+{% for post in posts %}
+    <div>
+        <h6>Дата публикации: {{ post.time_in | date:'d M Y' }}</h6>
+        <h5>{{ post.title | censor }}</h5>
+        <span>
+            {{ post.text | truncatewords:20 | censor }}<a href="http://127.0.0.1:8000/postlist/{{ post.id }}">Читать далее</a>
+        </span>
+    </div>
+    <hr>
+{% endfor %}
+</body>
+</html>

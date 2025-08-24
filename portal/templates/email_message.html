@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Document</title>
+</head>
+<body>
+<h1>Привет {{ user.username }} в категории {{ category.name }} вышла новая запись.</h1>
+<h4>{{ post.title }}</h4>
+{{ post.text |  truncatewords:30 }}<a href="http://127.0.0.1:8000/postlist/{{ post.id }}">Читать далее</a>
+</body>
+</html>

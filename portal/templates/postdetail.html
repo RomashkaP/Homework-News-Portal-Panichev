@@ -4,6 +4,11 @@
 {% block content %}
 <div>
     <h6>Дата публикации: {{ postdetail.time_in | date:'d M Y' }}</h6>
+    <h5>Категория:
+    {% for category in postdetail.categoryes.all %}
+        {{ category.name }}
+    {% endfor %}
+    </h5>
     <h5>{{ postdetail.title | censor }}</h5>
     <str>{{ postdetail.text | censor}}</str>
 </div>

@@ -2,14 +2,22 @@
 {% load custom_filters %}
 {% load custom_tags %}
 {% block content %}
-<h2>Страница авторизованного пользователя {{request.user.username}}</h2>
+<h2>Страница авторизованного пользователя {{request.user.email}}</h2>
 <div> Здесь может содержаться персональная информация для каждого пользователя </div>
 
 {% if is_not_author %}
 <button> <a href="/be_author"> Хочу быть автором!</a> </button>
 {% endif %}
-
+<hr>
+<h3><a href="/postlist/">Список новостей</a><h3>
+<hr>
 <button>
     <a href="/logout">Выйти</a>
 </button>
+<h3>Категории на которые вы подписаны: </h3>
+<ul>
+    {% for category in user_categories %}
+    <li>{{ category.name }} - <a href="/category_unsubscribe/{{ category.name }}">Отписаться</a></li>
+    {% endfor %}
+</ul>
 {% endblock content %}
